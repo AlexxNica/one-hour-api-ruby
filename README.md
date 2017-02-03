@@ -1,4 +1,4 @@
-# OneHourApi [![Build Status](https://travis-ci.org/blockchain/one-hour-api-ruby.png?branch=master)](https://travis-ci.org/blockchain/one-hour-api-ruby)
+# OneHourApi [![Build Status](https://travis-ci.org/blockchain/one-hour-api-ruby.png?branch=master)](https://travis-ci.org/blockchain/one-hour-api-ruby) [![Coverage Status](https://coveralls.io/repos/github/blockchain/one-hour-api-ruby/badge.svg?branch=master)](https://coveralls.io/github/blockchain/one-hour-api-ruby?branch=master)
 
 Ruby Gem for the [One Hour API v2](https://www.onehourtranslation.com/translation/api-documentation-v2/general-instructions). Not affiliated with One Hour Translation. Use at your own risk.
 
