@@ -20,17 +20,65 @@ Or install it yourself as:
 
 ## Usage
 
+### Authentication
+
 ```rb
+require 'one_hour_api'
 API_KEY=...
 API_SECRET=...
 api = OneHourApi::Client.new(API_KEY, API_SECRET)
+```
+
+### Account info
+
+Endpoint: `/api/2/account`
+
+```rb
 api.account
 # { credits: "100", account_id: "1", account_username: "you", role: "customer", uuid: "85284b85-8e04-42d1-86d0-934ff62193be" }
 ```
 
+### Contexts
+
+Endpoint: `/api/2/tm/context`
+
+- [ ] list, add, remove contexts
+
+### Phrases
+
+Endpoint: `/api/2/tm/context/:id/phrases`
+
+- [ ] list / add / remove phrases
+- [ ] add (existing) translation
+- [ ] invalidate translation
+
+### Projects - Translate Context
+
+Endpoint: `api/2/tm/context/:id/translate/:from/:to`
+
+- [ ] request translation for new phrases and invalidated translations
+
+## API mock
+
+The API responses can be mocked, so that you can test your integration.
+
+```rb
+require 'one_hour_api/mock'
+api = OneHourApi::Client.new
+api.account # returns mock account info
+```
+
+The goal is for the mocks to maintain state, so that if e.g. you call `client.Context.create(x)`, a subsequent call to `client.Context.all` with return [x].
+
+Todo:
+
+- [ ] mock list, add, remove contexts
+- [ ] mock creating a translation project, simulate human translators completing project
+- [ ] mock adding / removing phrases, adding and invalidating translations
+
 ## API endpoints not yet implemented
 
-- [] ...
+- [ ] ...
 
 ## Development
 

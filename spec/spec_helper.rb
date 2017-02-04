@@ -17,3 +17,4 @@ SimpleCov.start do
 end
 
 require "one_hour_api"
+require "one_hour_api/mock"
