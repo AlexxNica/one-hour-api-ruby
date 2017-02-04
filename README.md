@@ -26,7 +26,7 @@ Or install it yourself as:
 require 'one_hour_api'
 API_KEY=...
 API_SECRET=...
-api = OneHourApi::Client.new(API_KEY, API_SECRET)
+client = OneHourApi::Client.new(API_KEY, API_SECRET)
 ```
 
 ### Account info
@@ -34,7 +34,7 @@ api = OneHourApi::Client.new(API_KEY, API_SECRET)
 Endpoint: `/api/2/account`
 
 ```rb
-api.account
+client.Account.get
 # { credits: "100", account_id: "1", account_username: "you", role: "customer", uuid: "85284b85-8e04-42d1-86d0-934ff62193be" }
 ```
 
@@ -64,11 +64,11 @@ The API responses can be mocked, so that you can test your integration.
 
 ```rb
 require 'one_hour_api/mock'
-api = OneHourApi::Client.new
-api.account # returns mock account info
+client = OneHourApi::Mock::Client.new
+client.Account.get # returns mock account info
 ```
 
-The goal is for the mocks to maintain state, so that if e.g. you call `client.Context.create(x)`, a subsequent call to `client.Context.all` with return [x].
+The goal is for the mocks to maintain state, so that if e.g. you call `client.Context.create(x)`, a subsequent call to `client.Context.all` returns [x].
 
 Todo:
 
