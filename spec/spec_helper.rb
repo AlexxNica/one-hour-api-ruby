@@ -3,10 +3,15 @@ require 'coveralls'
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+formatters = [
   SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
 ]
+
+if ENV['CI']
+  formatters.push Coveralls::SimpleCov::Formatter
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter::new(formatters)
 
 SimpleCov.start do
 end

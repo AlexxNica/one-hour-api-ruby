@@ -36,7 +36,7 @@ api.account
 
 This Gem is heavily inspired by the [Jira Gem](https://github.com/sumoheavy/jira-ruby/).
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. To install this gem onto your local machine, run `bundle exec rake install`.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/guard` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Release
 
