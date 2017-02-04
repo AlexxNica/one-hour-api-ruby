@@ -23,10 +23,30 @@ module OneHourApi
       @options = options
     end
 
+    def auth_request(verb, endpoint)
+      begin
+        case verb
+        when :get
+          response = RestClient.get(@options[:root] + endpoint, {params: {public_key: @public_key, secret_key: @secret_key}})
+        else
+          raise ArgumentError, 'wrong HTTP verb'
+        end
+        res = JSON.parse(response.body)
+        raise ServerError if !res["status"]
+        case res["status"]["code"]
+        when 0
+          res["results"]
+        else
+          raise ResultError, "#{ verb.to_s.upcase } #{ endpoint } failed with code #{ res["status"]["code"] }: #{res["status"]["msg"] }"
+        end
+
+      rescue RestClient::ExceptionWithResponse => e
+        raise ServerError, e.message
+      end
+    end
+
     def auth_get(endpoint)
-      response = RestClient.get(@options[:root] + endpoint, {params: {public_key: @public_key, secret_key: @secret_key}})
-      res = JSON.parse(response.body)
-      res["results"]
+      auth_request(:get, endpoint)
     end
 
     def Account
