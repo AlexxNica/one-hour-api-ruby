@@ -31,13 +31,13 @@ module OneHourApi
         else
           raise ArgumentError, 'wrong HTTP verb'
         end
-        res = JSON.parse(response.body)
-        raise ServerError if !res["status"]
-        case res["status"]["code"]
+        res = JSON.parse(response.body, {symbolize_names: true})
+        raise ServerError if !res[:status]
+        case res[:status][:code]
         when 0
-          res["results"]
+          res[:results]
         else
-          raise ResultError, "#{ verb.to_s.upcase } #{ endpoint } failed with code #{ res["status"]["code"] }: #{res["status"]["msg"] }"
+          raise ResultError, "#{ verb.to_s.upcase } #{ endpoint } failed with code #{ res[:status][:code] }: #{res[:status][:msg] }"
         end
 
       rescue RestClient::ExceptionWithResponse => e

@@ -7,12 +7,11 @@ module OneHourApi
       attr_reader :credits, :account_id, :account_username, :role, :uuid
 
       def initialize(client, object)
-        puts object
-        @credits = object["credits"]
-        @account_id = object["account_id"]
-        @account_username = object["account_username"]
-        @role = object["role"]
-        @uuid = object["uuid"]
+        @credits = object[:credits]
+        @account_id = object[:account_id]
+        @account_username = object[:account_username]
+        @role = object[:role]
+        @uuid = object[:uuid]
       end
 
       def self.get(client)
